@@ -42,3 +42,13 @@ class NewAccount(BaseModel):
 async def create_account(account: NewAccount):
     print("New user registered:", account)
     return {"message": "Account created"}
+class LoginRequest(BaseModel):
+    email: str
+    password: str
+
+@app.post("/login")
+async def login(request: LoginRequest):
+    # TODO: Replace this with real validation
+    if request.email and request.password:
+        return {"status": "success", "message": "Login successful"}
+    return {"status": "fail", "message": "Invalid credentials"}
